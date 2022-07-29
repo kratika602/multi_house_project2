@@ -22,6 +22,6 @@ def predict():
   exp6 = float(request.args.get('exp6'))
   prediction = model.predict([[exp1,exp2,exp3,exp4,exp5,exp6]])
   return render_template('index.html', prediction_text='Regression Model  has predicted Price for the House : {}'.format(prediction))
-if __name__=='main':
-    app.run(debug==True)
+if __name__=='__main__':
+    app.run(debug=True)
   
