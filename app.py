@@ -12,7 +12,7 @@ def home():
     return render_template("index.html")
   
   
-@app.route('/pr',methods=['GET'])
+@app.route('/predict',methods=['GET'])
 def predict():
   exp1 = float(request.args.get('exp1'))
   exp2 = float(request.args.get('exp2'))
