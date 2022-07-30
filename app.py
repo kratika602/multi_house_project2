@@ -1,10 +1,12 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
+#from flask_ngrok import run_with_ngrok
 import pickle
 
 
 app = Flask(__name__)
 model = pickle.load(open('project2_house.pkl','rb')) 
+#run_with_ngrok(app)
 
 @app.route('/')
 def home():
@@ -12,7 +14,7 @@ def home():
     return render_template("index.html")
   
   
-@app.route('/predict',methods=['GET'])
+@app.route('/pr',methods=['GET'])
 def predict():
   exp1 = float(request.args.get('exp1'))
   exp2 = float(request.args.get('exp2'))
@@ -22,6 +24,8 @@ def predict():
   exp6 = float(request.args.get('exp6'))
   prediction = model.predict([[exp1,exp2,exp3,exp4,exp5,exp6]])
   return render_template('index.html', prediction_text='Regression Model  has predicted Price for the House : {}'.format(prediction))
+
 if __name__=='__main__':
-    app.run(debug=True)
+  app.run(debug=True)
+    
   
